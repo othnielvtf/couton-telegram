@@ -6,6 +6,17 @@
     <title>Telegram Mini App - Redeem</title>
     <!-- Add your CSS and JavaScript files here -->
     <style>
+
+        :root {
+                --tg-theme-text-color: black; /* Default color for light mode */
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --tg-theme-text-color: white; /* Color for dark mode */
+                }
+            }
+
         body {
             --bg-color: var(--tg-theme-bg-color);
             font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
