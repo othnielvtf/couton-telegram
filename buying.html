@@ -92,21 +92,32 @@
             <button style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="submit">Buy</button>
         </form>
         <p id="code"></p>
+        <button id="copyButton" style="display:none; background-color: #03AAE1; height: 50px; width: 100%; padding: 0px; margin: 10px 0px; border: none; border-radius: 10px;">Copy Code</button>        
     </div>
     
     <script>
-    document.getElementById('buyForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const input = document.getElementById('tonInput');
-        input.blur(); // Close the keyboard drawer
-        const code = generateRandomHexCode();
-        document.getElementById('code').innerText = `This is your code: ${code}`;
-    });
-    
-    function generateRandomHexCode() {
-        const randomHex = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0');
-        return `0x${randomHex}`;
-    }
+        document.getElementById('buyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const input = document.getElementById('tonInput');
+            input.blur(); // Close the keyboard drawer
+            const code = generateRandomHexCode();
+            document.getElementById('code').innerText = `This is your code: ${code}`;
+            document.getElementById('copyButton').style.display = 'block'; // Show the copy button
+        });
+        
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const codeText = document.getElementById('code').innerText.split(': ')[1];
+            navigator.clipboard.writeText(codeText).then(function() {
+                alert('Code copied to clipboard!');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        });
+        
+        function generateRandomHexCode() {
+            const randomHex = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0');
+            return `0x${randomHex}`;
+        }
     </script>
-    </body>
-    </html>
+</body>
+</html>
