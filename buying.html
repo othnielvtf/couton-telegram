@@ -92,7 +92,9 @@
             <button style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="submit">Buy</button>
         </form>
         <p id="code"></p>
-        <button id="copyButton" style="display:none; background-color: #00c85a; height: 50px; width: 100%; padding: 0px; margin: 10px 0px; border: none; border-radius: 10px;">Copy Code</button>        
+        <button id="copyButton" style="display:none; background-color: #00c85a; color: white !important; height: 50px; width: 100%; padding: 0px; margin: 10px 0px; border: none; border-radius: 10px;">Copy Code</button>        
+        <button id="shareButton" style="display:none; background-color: #1c1c1c; color: white !important; height: 50px; width: 100%; padding: 0px; margin: 10px 0px; border: none; border-radius: 10px;">Share Code</button>
+
     </div>
     
     <script>
@@ -103,6 +105,7 @@
             const code = generateRandomHexCode();
             document.getElementById('code').innerText = `This is your code: ${code}`;
             document.getElementById('copyButton').style.display = 'block'; // Show the copy button
+            document.getElementById('shareButton').style.display = 'block'; // Show the share button
         });
         
         document.getElementById('copyButton').addEventListener('click', function() {
@@ -114,10 +117,26 @@
             });
         });
         
+        document.getElementById('shareButton').addEventListener('click', function() {
+            const codeText = document.getElementById('code').innerText.split(': ')[1];
+            if (navigator.share) {
+                navigator.share({
+                    title: 'COU-TON Code',
+                    text: `This is your code: ${codeText}`,
+                }).then(() => {
+                    console.log('Code shared successfully');
+                }).catch((error) => {
+                    console.error('Error sharing code: ', error);
+                });
+            } else {
+                alert('Web Share API is not supported in your browser.');
+            }
+        });
+        
         function generateRandomHexCode() {
             const randomHex = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0');
             return `0x${randomHex}`;
         }
-    </script>
+        </script>
 </body>
 </html>
