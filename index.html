@@ -139,7 +139,11 @@
         <input type="text" placeholder="Cou-Ton code here" style="border-radius:5px;height: 50px; width: 100%;text-align: center;">
         <div style="padding-top:10px;"></div>
         <button id="redeemButton" style="background-color: #03AAE1;color:white !important;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="button">Redeem</button>
+        <div style="padding-top:10px;"></div>
+        <button id="connectWalletButton" style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="button">Connect Wallet</button>
+    
     </form>
+
     <p>Looking to buy Cou-Ton? Click <a href="buying.html">here</a></p>
 </div>
 </body>
@@ -176,5 +180,8 @@
     connectToWallet().catch(error => {
         console.error("Error connecting to wallet:", error);
     });
+
+    document.getElementById('connectWalletButton').addEventListener('click', connectToWallet);
+
 </script>
 </html>
