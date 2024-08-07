@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Mini App</title>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+
+
+
     <!-- Add your CSS and JavaScript files here -->
     <style>
        :root {
@@ -113,6 +117,9 @@
     </style>
 </head>
 <body>
+    <div id="ton-connect"></div>
+
+
 <div class="burger-icon" onclick="toggleMenu()">
     <div></div>
     <div></div>
@@ -131,7 +138,7 @@
     <form style="display: flex;flex-direction: column;align-items: center;text-align: center;">
         <input type="text" placeholder="Cou-Ton code here" style="border-radius:5px;height: 50px; width: 100%;text-align: center;">
         <div style="padding-top:10px;"></div>
-        <button id="redeemButton" style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="button">Redeem</button>
+        <button id="redeemButton" style="background-color: #03AAE1;color:white !important;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="button">Redeem</button>
     </form>
     <p>Looking to buy Cou-Ton? Click <a href="buying.html">here</a></p>
 </div>
@@ -145,17 +152,29 @@
             menu.style.display = 'flex';
         }
     }
-
     function redeemCoupon() {
         window.location.href = 'redeem.html';
     }
-
     document.getElementById('redeemButton').addEventListener('click', redeemCoupon);
-
     document.getElementById('couponCode').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             redeemCoupon();
         }
+    });
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+        manifestUrl: 'https://couton-telegram.vercel.app/tonconnect-manifest.json',
+        buttonRootId: 'ton-connect'
+    });
+
+    async function connectToWallet() {
+        const connectedWallet = await tonConnectUI.connectWallet();
+        // Do something with connectedWallet if needed
+        console.log(connectedWallet);
+    }
+
+    // Call the function
+    connectToWallet().catch(error => {
+        console.error("Error connecting to wallet:", error);
     });
 </script>
 </html>
