@@ -131,19 +131,31 @@
     <form style="display: flex;flex-direction: column;align-items: center;text-align: center;">
         <input type="text" placeholder="Cou-Ton code here" style="border-radius:5px;height: 50px; width: 100%;text-align: center;">
         <div style="padding-top:10px;"></div>
-        <button style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="submit"><a href="redeem.html">Redeem</a></button>
+        <button id="redeemButton" style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="button">Redeem</button>
     </form>
     <p>Looking to buy Cou-Ton? Click <a href="buying.html">here</a></p>
 </div>
 </body>
 <script>
-    function toggleMenu() {
-            const menu = document.getElementById('burgerMenu');
-            if (menu.style.display === 'flex') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'flex';
-            }
+     function toggleMenu() {
+        const menu = document.getElementById('burgerMenu');
+        if (menu.style.display === 'flex') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'flex';
         }
+    }
+
+    function redeemCoupon() {
+        window.location.href = 'redeem.html';
+    }
+
+    document.getElementById('redeemButton').addEventListener('click', redeemCoupon);
+
+    document.getElementById('couponCode').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            redeemCoupon();
+        }
+    });
 </script>
 </html>
