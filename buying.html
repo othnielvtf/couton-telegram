@@ -81,32 +81,32 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <img src="https://raw.githubusercontent.com/telegram-mini-apps-dev/vanilla-js-boilerplate/master/assets/tapps.png" alt="Logo" width="150">
-    <h1>COU-TON</h1>
-    <p>Buy TON here! And share your voucher code</p>
-    <div style="padding-top:20px;">
-    </div>
-    <form id="buyForm" style="display: flex;flex-direction: column;align-items: center;text-align: center;">
-        <input type="number" placeholder="100 TON" style="border-radius:5px;height: 50px; width: 100%;text-align: center;">
-        <div style="padding-top:10px;"></div>
-        <button style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="submit">Buy</button>
-    </form>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/telegram-mini-apps-dev/vanilla-js-boilerplate/master/assets/tapps.png" alt="Logo" width="150">
+        <h1>COU-TON</h1>
+        <p>Buy TON here! And share your voucher code</p>
+        <div style="padding-top:20px;"></div>
+        <form id="buyForm" style="display: flex;flex-direction: column;align-items: center;text-align: center;">
+            <input id="tonInput" type="number" placeholder="100 TON" style="border-radius:5px;height: 50px; width: 100%;text-align: center;">
+            <div style="padding-top:10px;"></div>
+            <button style="background-color: #03AAE1;height:50px;width: 100%;padding:0px;margin: 0px;border:none;border-radius:10px" type="submit">Buy</button>
+        </form>
         <p id="code"></p>
-
-    <p>Looking to redeem Cou-Ton? Click <a href="index.html">here</a></p>
+    </div>
+    
     <script>
-        document.getElementById('buyForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const code = generateRandomHexCode();
-            document.getElementById('code').innerText = `This is your code: ${code}`;
-        });
-        
-        function generateRandomHexCode() {
-            const randomHex = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0');
-            return `0x${randomHex}`;
-        }
+    document.getElementById('buyForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const input = document.getElementById('tonInput');
+        input.blur(); // Close the keyboard drawer
+        const code = generateRandomHexCode();
+        document.getElementById('code').innerText = `This is your code: ${code}`;
+    });
+    
+    function generateRandomHexCode() {
+        const randomHex = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0');
+        return `0x${randomHex}`;
+    }
     </script>
-</div>
-</body>
-</html>
+    </body>
+    </html>
