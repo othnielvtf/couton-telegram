@@ -57,7 +57,7 @@
             background-color: #03AAE1;
             margin: 5px;
         }
-        
+
         body {
             --bg-color: var(--tg-theme-bg-color);
             font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
@@ -148,4 +148,14 @@
     </form>
 </div>
 </body>
+<script>
+    function toggleMenu() {
+            const menu = document.getElementById('burgerMenu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+</script>
 </html>

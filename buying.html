@@ -145,6 +145,16 @@
     </div>
     
     <script>
+
+    function toggleMenu() {
+                const menu = document.getElementById('burgerMenu');
+                if (menu.style.display === 'flex') {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = 'flex';
+                }
+            }
+            
         document.getElementById('buyForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const input = document.getElementById('tonInput');
