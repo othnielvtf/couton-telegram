@@ -29,6 +29,44 @@
             text-align: center;
         }
 
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: white;
+            width: 200px;
+            height: 100vh;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .burger-menu a {
+            padding: 15px;
+            text-decoration: none;
+            color: #03AAE1;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .burger-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        .burger-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .burger-icon div {
+            width: 25px;
+            height: 3px;
+            background-color: #03AAE1;
+            margin: 5px;
+        }
+
         a {
             color: var(--tg-theme-link-color);
         }
@@ -81,6 +119,16 @@
     </style>
 </head>
 <body>
+    <div class="burger-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="burger-menu" id="burgerMenu">
+        <a href="buying.html">Buy</a>
+        <a href="redeem.html">Redeem</a>
+        <a href="index.html">Home</a>
+    </div>
     <div class="container">
         <img src="https://raw.githubusercontent.com/telegram-mini-apps-dev/vanilla-js-boilerplate/master/assets/tapps.png" alt="Logo" width="150">
         <h1>COU-TON</h1>
@@ -94,7 +142,6 @@
         <p id="code"></p>
         <button id="copyButton" style="display:none; background-color: #00c85a; color: white !important; height: 50px; width: 100%; padding: 0px; margin: 10px 0px; border: none; border-radius: 10px;">Copy Code</button>        
         <button id="shareButton" style="display:none; background-color: #1c1c1c; color: white !important; height: 50px; width: 100%; padding: 0px; margin: 10px 0px; border: none; border-radius: 10px;">Share Code</button>
-
     </div>
     
     <script>
